@@ -21,11 +21,9 @@ if ($response->{success}) {
     $content =~ s/^\s+|\s+$//g;
     $content =~ s/\n\s*/\n/g;
 
-    my @temp = split(/\n/, $content);
-    foreach (0..$#temp/2) {
-        $temp[2*$_+1] .= "\n";
-    }
-    $content = join("\n", @temp);
+    my @tmp = split("\n", $content);
+    $tmp[2*$_+1] .= "\n" foreach (0..$#tmp/2);
+    $content = join("\n", @tmp);
 
     $content = Encode::decode("UTF-8", $content);
     $notification->update("Courses News", $content);
