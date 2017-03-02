@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-unless (-f $ENV{"HOME"}."/.config/mpd/pid") {
+unless (-f $ENV{HOME}."/.config/mpd/pid") {
     system("mpd && mpc -q clear && mpc -q update &&
             mpc -q add / && mpc -q random on &&
             mpc -q repeat on");
