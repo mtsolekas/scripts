@@ -21,7 +21,7 @@ open(my $in, "<", $ENV{HOME}."/.config/downloads_sort.conf");
 my @tmp = <$in>;
 close($in);
 
-my @src; my @dst;
+my (@src, @dst);
 foreach (0..$#tmp/2) {
     $tmp[2*$_] =~ s/\n$//;
     $tmp[2*$_+1] =~ s/\n$//;
