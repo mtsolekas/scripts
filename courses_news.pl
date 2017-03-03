@@ -21,7 +21,7 @@ if ($response->{success}) {
     $content =~ s/^\s+|\s+$//g;
     $content =~ s/\n\s*/\n/g;
 
-    my @tmp = split("\n", $content);
+    my @tmp = split(/\n/, $content);
     $tmp[2*$_+1] .= "\n" foreach (0..$#tmp/2);
     $content = join("\n", @tmp);
 
