@@ -18,8 +18,6 @@ sub mass_move {
 }
 
 my $config = $ENV{HOME}."/.config/downloads_sort.conf";
-die("$config does't exist\n") unless (-f $config);
-
 open(my $in, "<", $config) or die("Couldn't open $config\n");
 my @tmp = <$in>;
 close($in);
