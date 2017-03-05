@@ -6,12 +6,10 @@ use warnings;
 die("LibreOffice not installed\n") unless (-f "/usr/bin/libreoffice");
 die("No arguements\n") if ($#ARGV < 0);
 
-my @files = glob($ARGV[0]."/*.ppt");
-push(@files, glob($ARGV[0]."/*.pptx"));
-push(@files, glob($ARGV[0]."/*.doc"));
-push(@files, glob($ARGV[0]."/*.docx"));
-push(@files, glob($ARGV[0]."/*.odt"));
-push(@files, glob($ARGV[0]."/*.odp"));
+my @ext = ("/*.ppt", "/*.pttx", "/*.doc", "/*.docx", "/*.odt", "/*.odp");
+
+my @files;
+push(@files, glob($ARGV[0].$_)) foreach (@ext);
 
 foreach (@files) {
     print("Converting $_ to PDF\n");
