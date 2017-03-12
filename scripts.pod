@@ -1,12 +1,14 @@
-=head1 Scripts
+=head1 NAME
 
-This file documents the usage of the following scripts:
+Documentation of the various scripts.
+
+=head1 SYNOPSIS
 
 =over
 
 =item B<courses_news.pl>
 
-=item B<debian_update.pl>
+=item B<debian_update.pl> [-y]
 
 =item B<downloads_sort.pl>
 
@@ -20,15 +22,32 @@ This file documents the usage of the following scripts:
 
 =back
 
+=head1 DESCRIPTION
+
 =head2 Courses News
 
-This script will fetch the news section from B<courses.ece.tuc.gr>
+Courses News will fetch the news section from B<courses.ece.tuc.gr>
 and after formatting it, it will be displayed as a desktop
 notification via libnotify.
 
 =head2 Debian Update
 
-This script 
+Debian Update will check the connection to debian update servers and then
+it will perform several tasks with apt-get:
+
+=over
+
+=item It will update the cache
+
+=item It will clean downloaded packages
+
+=item It will perform a dist-upgrade
+
+=item It will autoremove orphaned packages
+
+=item  Also it can take the optional arguemnt -y and pass it to dist-upgrade
+
+=back
 
 =head2 Downloads Sort
 
