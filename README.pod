@@ -79,7 +79,8 @@ to MyArtist and the TITLE tag to MySong.
 =head2 PDF Convert
 
 PDF Convert will convert all doc, docx, odt, ppt, pptx, odp files
-in the given directory to PDF.
+in the given directory to PDF. It uses the export to PDF function
+of LibreOffice, so that needs to be installed for the script to work.
 
 =head2 Sources Search
 
