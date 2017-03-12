@@ -51,6 +51,16 @@ it will perform several tasks with apt-get:
 
 =head2 Downloads Sort
 
+Downloads Sort will move the files from $HOME/Downloads/ matching
+the patterns found in $HOME/.config/downloads_sort.conf to their
+corresponding destinations. The downloads_sort.conf syntax is a
+glob pattern followed by the destination directory, for example:
+
+    *.pdf
+    Documents/
+    *.opus
+    Music/
+
 =head2 Music Control
 
 =head2 Opus Edit
