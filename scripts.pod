@@ -94,4 +94,11 @@ Sources Search will search all files contents in the current directory
 and all subdirectories for matches to the given perl regualar expression
 and list them.
 
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2017 Marios Tsolekas <marios.tsolekas@gmail.com>.
+
+These scripts and documentation are free software under the
+GPL version 3.
+
 =cut
