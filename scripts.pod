@@ -1,6 +1,6 @@
 =head1 NAME
 
-Documentation of the various scripts.
+Scripts documentation.
 
 =head1 SYNOPSIS
 
@@ -12,13 +12,13 @@ Documentation of the various scripts.
 
 =item B<downloads_sort.pl>
 
-=item B<music_control.pl>
+=item B<music_control.pl> mpc_command
 
-=item B<opus_edit.py>
+=item B<opus_edit.py> path/to/directory/
 
-=item B<pdf_convert.pl>
+=item B<pdf_convert.pl> path/to/directory/
 
-=item B<sources_search.pl>
+=item B<sources_search.pl> regular_expression
 
 =back
 
@@ -63,7 +63,18 @@ glob pattern followed by the destination directory, for example:
 
 =head2 Music Control
 
+Music control will just execute the given mpc command if mpd is running.
+If it isn't running it will start it and initialize certain mpc options.
+For more information on mpc see B<man mpc>.
+
 =head2 Opus Edit
+
+Opus Edit will edit the ARTIST and TITLE tags of all opus files
+in the given directory by getting the required information from
+the files name. The opus file must be named in the format of
+"MyArtist - MySong.opus", in which case it will set the ARTIST tag
+to MyArtist and the TITLE tag to MySong.
+
 
 =head2 PDF Convert
 
