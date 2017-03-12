@@ -12,13 +12,13 @@ Scripts documentation.
 
 =item B<downloads_sort.pl>
 
-=item B<music_control.pl> mpc_command
+=item B<music_control.pl> <mpc_command>
 
-=item B<opus_edit.py> path/to/directory/
+=item B<opus_edit.py> <path/to/directory/>
 
-=item B<pdf_convert.pl> path/to/directory/
+=item B<pdf_convert.pl> <path/to/directory/>
 
-=item B<sources_search.pl> regular_expression
+=item B<sources_search.pl> <regular_expression>
 
 =back
 
@@ -56,10 +56,17 @@ the patterns found in $HOME/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
 glob pattern followed by the destination directory, for example:
 
-    *.pdf
-    Documents/
-    *.opus
-    Music/
+=over
+
+=item *.pdf
+
+=item Documents/
+
+=item *.opus
+
+=item Music/
+
+=back
 
 =head2 Music Control
 
@@ -78,6 +85,13 @@ to MyArtist and the TITLE tag to MySong.
 
 =head2 PDF Convert
 
+PDF Convert will convert all doc, docx, odt, ppt, pptx, odp files
+in the given directory to PDF.
+
 =head2 Sources Search
+
+Sources Search will search all files contents in the current directory
+and all subdirectories for matches to the given perl regualar expression
+and list them.
 
 =cut
