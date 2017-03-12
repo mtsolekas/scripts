@@ -1,0 +1,43 @@
+=head1 Scripts
+
+This file documents the usage of the following scripts:
+
+=over
+
+=item B<courses_news.pl>
+
+=item B<debian_update.pl>
+
+=item B<downloads_sort.pl>
+
+=item B<music_control.pl>
+
+=item B<opus_edit.py>
+
+=item B<pdf_convert.pl>
+
+=item B<sources_search.pl>
+
+=back
+
+=head2 Courses News
+
+This script will fetch the news section from B<courses.ece.tuc.gr>
+and after formatting it, it will be displayed as a desktop
+notification via libnotify.
+
+=head2 Debian Update
+
+This script 
+
+=head2 Downloads Sort
+
+=head2 Music Control
+
+=head2 Opus Edit
+
+=head2 PDF Convert
+
+=head2 Sources Search
+
+=cut
