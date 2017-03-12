@@ -56,17 +56,10 @@ the patterns found in $HOME/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
 glob pattern followed by the destination directory, for example:
 
-=over
-
-=item *.pdf
-
-=item Documents/
-
-=item *.opus
-
-=item Music/
-
-=back
+    *.pdf
+    Documents/
+    *.opus
+    Music/
 
 =head2 Music Control
 
