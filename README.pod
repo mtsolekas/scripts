@@ -86,7 +86,8 @@ of LibreOffice, so that needs to be installed for the script to work.
 
 Sources Search will search all files contents in the current directory
 and all subdirectories for matches to the given perl regualar expression
-and list them.
+and list them. Currently it searches the contents of C source and header
+files as well as Python and Perl source files.
 
 =head1 COPYRIGHT AND LICENSE
 
