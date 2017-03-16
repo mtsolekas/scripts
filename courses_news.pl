@@ -12,7 +12,7 @@ my $response = HTTP::Tiny->new()->get("http://courses.ece.tuc.gr");
 Glib::Object::Introspection->setup(basename => "Notify",
                                    version => "0.7",
                                    package => "Notify");
-Notify->init;
+Notify->init();
 my $notification = Notify::Notification->new("Courses News");
 
 if ($response->{success}) {

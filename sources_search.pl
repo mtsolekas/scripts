@@ -12,7 +12,7 @@ File::Find::find(sub { push(@files, $File::Find::name)
                        if ($File::Find::name =~ /\.p[yl]$|\.[ch]$/) }, ".");
 
 foreach (@files) {
-    open(my $in, "<", $_) or next;
+    open(my $in, "<", $_) or next();
     push(@match, $_) if(join("\n", <$in>) =~ /$ARGV[0]/);
     close($in);
 }
