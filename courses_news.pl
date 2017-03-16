@@ -7,7 +7,7 @@ use Encode ();
 use HTTP::Tiny ();
 use Glib::Object::Introspection ();
 
-my $response = HTTP::Tiny->new->get("http://courses.ece.tuc.gr");
+my $response = HTTP::Tiny->new()->get("http://courses.ece.tuc.gr");
 
 Glib::Object::Introspection->setup(basename => "Notify",
                                    version => "0.7",
