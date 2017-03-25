@@ -6,7 +6,7 @@ use warnings;
 die("LibreOffice not installed\n") unless (-f "/usr/bin/libreoffice");
 die("No arguements\n") if ($#ARGV < 0);
 
-my @ext = ("/*.ppt", "/*.pttx", "/*.doc", "/*.docx", "/*.odt", "/*.odp");
+my @ext = ("/*.ppt", "/*.pptx", "/*.doc", "/*.docx", "/*.odt", "/*.odp");
 
 my @files;
 push(@files, glob($ARGV[0].$_)) foreach (@ext);
