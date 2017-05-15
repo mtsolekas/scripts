@@ -14,7 +14,7 @@ Scripts documentation.
 
 =item B<music_control.pl> <mpc_command>
 
-=item B<opus_edit.py> <path/to/directory/>
+=item B<opus_edit.pl> <path/to/directory/>
 
 =item B<pdf_convert.pl> <path/to/directory/>
 
@@ -72,8 +72,10 @@ For more information on mpc see B<man mpc>.
 Opus Edit will edit the ARTIST and TITLE tags of all opus files
 in the given directory by getting the required information from
 the files name. The opus file must be named in the format of
-"MyArtist - MySong.opus", in which case it will set the ARTIST tag
-to MyArtist and the TITLE tag to MySong.
+"MyArtist - MyTitle.opus", in which case it will set the ARTIST tag
+to MyArtist and the TITLE tag to MySong. If any files were edited
+it will move them to the Music directory in the users home folder and
+if MPD is running it will refresh it.
 
 
 =head2 PDF Convert
