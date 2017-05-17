@@ -45,7 +45,7 @@ it will perform several tasks with apt-get:
 
 =item It will autoremove orphaned packages
 
-=item  Also it can take the optional arguemnt -y and pass it to dist-upgrade
+=item Also it can take the optional arguemnt -y and pass it to dist-upgrade
 
 =back
 
