@@ -13,7 +13,7 @@ File::Find::find(sub { push(@files, $File::Find::name)
 
 foreach (@files) {
     open(my $in, "<", $_) or next();
-    push(@match, $_) if(join("\n", <$in>) =~ /$ARGV[0]/);
+    push(@match, $_) if (join("\n", <$in>) =~ /$ARGV[0]/);
     close($in);
 }
 
