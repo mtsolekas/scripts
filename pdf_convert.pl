@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 die("LibreOffice not installed\n") unless (-f "/usr/bin/libreoffice");
-die("No arguements\n") if ($#ARGV < 0);
+die("No arguements\n") unless (@ARGV);
 
 my @ext = ("/*.ppt", "/*.pptx", "/*.doc", "/*.docx", "/*.odt", "/*.odp");
 

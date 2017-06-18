@@ -11,8 +11,9 @@ die("Host unreachable\n") unless ($p->ping("httpredir.debian.org") &&
 $p->close();
 
 my $auto = "";
-$auto = $ARGV[0] if ($#ARGV >= 0 && $ARGV[0] eq "-y");
+$auto = $ARGV[0] if (@ARGV && $ARGV[0] eq "-y");
 
 die("Error updating package cache\n") if (system("sudo apt-get update"));
-system("sudo apt-get clean && sudo apt-get dist-upgrade --purge $auto &&
+system("sudo apt-get clean &&
+        sudo apt-get dist-upgrade --no-install-recommends --purge $auto &&
         sudo apt-get autoremove --purge $auto");

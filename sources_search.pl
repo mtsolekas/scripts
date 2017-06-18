@@ -5,7 +5,7 @@ use warnings;
 
 use File::Find ();
 
-die("No arguements\n") if ($#ARGV < 0);
+die("No arguements\n") unless (@ARGV);
 
 my (@files, @match);
 File::Find::find(sub { push(@files, $File::Find::name)
