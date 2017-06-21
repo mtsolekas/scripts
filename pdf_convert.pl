@@ -7,9 +7,7 @@ die("LibreOffice not installed\n") unless (-f "/usr/bin/libreoffice");
 die("No arguements\n") unless (@ARGV);
 
 my @ext = ("/*.ppt", "/*.pptx", "/*.doc", "/*.docx", "/*.odt", "/*.odp");
-
-my @files;
-push(@files, glob($ARGV[0].$_)) foreach (@ext);
+my @files = map { glob($ARGV[0].$_) } @ext;
 
 foreach (@files) {
     print("Converting $_ to PDF\n");
