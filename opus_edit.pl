@@ -35,7 +35,7 @@ foreach (@files) {
 $| = 0;
 
 if ($#files < 0) {
-    die("\nNo files selected\n");
+    die("No files selected\n");
 } else {
     print("\nEdited ", $#files+1, " files\n");
 }
