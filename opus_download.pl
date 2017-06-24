@@ -17,7 +17,7 @@ print("Downloading $info->{title}.$info->{suffix}...\n");
 $client->download($id, {filename => "{title}.{suffix}"});
 
 print("Converting to opus...\n");
-system("avconv -i \"$info->{title}.$info->{suffix}\" -vn -acodec libopus ".
+system("ffmpeg -i \"$info->{title}.$info->{suffix}\" -vn -acodec libopus ".
        "-map_metadata -1 \"$info->{title}.opus\" >/dev/null 2>&1");
 
 print("Removing video file...\n");
