@@ -10,13 +10,15 @@ die("No url given\n") unless (@ARGV);
 my $client = WWW::YouTube::Download->new();
 my $id = WWW::YouTube::Download->video_id($ARGV[0]);
 
-print("Downloading info\n");
+print("Downloading info...\n");
 my $info = $client->prepare_download($id);
 
-print("Downloading $info->{title}\n");
-$client->download($id, {fmt => 43, filename => "temp.webm"});
+print("Downloading $info->{title}.$info->{suffix}...\n");
+$client->download($id, {filename => "{title}.{suffix}"});
 
-print("Converting to opus\n");
-system("avconv -i temp.webm -vn -acodec libopus ".
+print("Converting to opus...\n");
+system("avconv -i \"$info->{title}.$info->{suffix}\" -vn -acodec libopus ".
        "\"$info->{title}.opus\" >/dev/null 2>&1");
-unlink("temp.webm");
+
+print("Removing video file...\n");
+unlink("$info->{title}.$info->{suffix}");
