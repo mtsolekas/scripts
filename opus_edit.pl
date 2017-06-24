@@ -44,7 +44,7 @@ if ($#files < 0) {
     print("\nEdited ", $#files+1, " files\n");
 }
 
-unless (($ARGV[0]."/") =~ /$ENV{HOME}\/Music\//) {
+unless (($ARGV[0]."/") =~ /Music\//) {
     print("Moving files to music directory\n");
     File::Copy::move($_, $ENV{HOME}."/Music/") foreach (@files)
 } else {
