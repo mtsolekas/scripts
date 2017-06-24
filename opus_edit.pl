@@ -11,7 +11,7 @@ my @files = glob($ARGV[0]."/*.opus");
 
 my $num = 0;
 my $curr = "";
-my ($padd, $prev);
+my ($padd, $diff, $prev);
 
 my ($f, $artist, $title);
 
@@ -20,8 +20,12 @@ $| = 1;
 foreach (@files) {
     $prev = $curr;
     ($curr) = $_ =~ /$ARGV[0]\/(.*)/;
-    $padd = " "x(length($prev) - length($curr));
-    print("\r[", ++$num, "/", $#files+1, "] ",$curr, $padd);
+    
+    $diff = length($prev) - length($curr);
+    $diff = 0 if ($diff < 0);
+    $padd = " "x$diff;
+
+    print("\r[", ++$num, "/", $#files + 1, "] ",$curr, $padd);
 
     ($artist) = $curr =~ /(.*) -/; $artist =~ s/^\s+|\s+$//;
     ($title) = $curr =~ /- (.*)/; $title =~ s/^\s+|\.opus$//;
