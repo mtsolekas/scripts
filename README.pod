@@ -14,8 +14,6 @@ Scripts documentation.
 
 =item B<music_control.pl> <mpc_command>
 
-=item B<opus_download.pl> <url>
-
 =item B<opus_edit.pl> <path/to/directory/>
 
 =item B<pdf_convert.pl> <path/to/directory/>
@@ -68,12 +66,6 @@ glob pattern followed by the destination directory, for example:
 Music control will just execute the given mpc command if mpd is running.
 If it isn't running it will start it and initialize certain mpc options.
 For more information on mpc see B<man mpc>.
-
-=head2 Opus Download
-
-Opus Download will download the video from the given youtube url in
-webm format and extract the opus file from it. It uses the
-WWW::YouTube::Download module and the avconv tool.
 
 =head2 Opus Edit
 
