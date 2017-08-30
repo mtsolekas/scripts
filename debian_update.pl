@@ -6,8 +6,7 @@ use warnings;
 use Net::Ping ();
 
 my $p = Net::Ping->new();
-die("Host unreachable\n") unless ($p->ping("httpredir.debian.org") &&
-                                  $p->ping("security.debian.org"));
+die("Host unreachable\n") unless ($p->ping("deb.debian.org"));
 $p->close();
 
 my $auto = "";
