@@ -12,7 +12,7 @@ my $ua = LWP::UserAgent->new(timeout => 60,
 my $response = $ua->get("http://gluonhq.com/download/scene-builder-jar/");
 die("Download failed\n") unless ($response->is_success());
 
-my $target = $ENV{HOME}."/Workspace/scene_builder.jar";
+my $target = $ENV{HOME}."/Workspace/SceneBuilder.jar";
 unlink($target) if (-f $target);
 
 open(my $out, ">", $target);
