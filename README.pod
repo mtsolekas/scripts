@@ -20,8 +20,6 @@ Scripts documentation.
 
 =item B<sources_search.pl> <regular_expression>
 
-=item B<scene_builder_download.pl>
-
 =back
 
 =head1 DESCRIPTION
@@ -92,12 +90,6 @@ Sources Search will search all files contents in the current directory
 and all subdirectories for matches to the given perl regualar expression
 and list them. Currently it searches the contents of C source and header
 files as well as Python and Perl source files.
-
-=head2 SceneBuilder Download
-
-SceneBuilder Download will download the latest SceneBuilder JAR from
-the Gluon website and place it in USER_HOME/Workspace/, while removing
-the previous file if it exists.
 
 =head1 COPYRIGHT AND LICENSE
 
