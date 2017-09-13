@@ -4,10 +4,11 @@ use strict;
 use warnings;
 
 use Encode ();
-use HTTP::Tiny ();
+use LWP::UserAgent ();
 use Glib::Object::Introspection ();
 
-my $response = HTTP::Tiny->new()->get("http://courses.ece.tuc.gr");
+my $ua = LWP::UserAgent->new(timeout => 30, env_proxy => 1);
+my $response = $ua->get("http://courses.ece.tuc.gr");
 
 Glib::Object::Introspection->setup(basename => "Notify",
                                    version => "0.7",
@@ -15,8 +16,8 @@ Glib::Object::Introspection->setup(basename => "Notify",
 Notify->init();
 my $notification = Notify::Notification->new("Courses News");
 
-if ($response->{success}) {
-    my ($content) = $response->{content} =~ /Ενημέρωση(.*?)Επιλογές/s;
+if ($response->is_success()) {
+    my ($content) = $response->content() =~ /Ενημέρωση(.*?)Επιλογές/s;
     $content =~ s/\<.*?\>//g;
     $content =~ s/^\s+|\s+$//g;
     $content =~ s/\n\s*/\n/g;
