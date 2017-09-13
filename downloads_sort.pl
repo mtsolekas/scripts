@@ -5,18 +5,6 @@ use warnings;
 
 use File::Copy ();
 
-sub mass_move {
-    my ($src, $dst) = @_;
-    
-    my $total = 0;
-    foreach (glob($src)) {
-        File::Copy::move($_, $dst);
-        $total++;
-    }
-
-    return $total;
-}
-
 my $config = $ENV{HOME}."/.config/downloads_sort.conf";
 open(my $in, "<", $config) or die("Couldn't open $config\n");
 my @tmp = <$in>;
@@ -32,6 +20,11 @@ foreach (0..$#tmp/2) {
 }
 
 my $total = 0;
-$total += mass_move($src[$_], $dst[$_]) foreach (0..$#src);
+foreach my $idx (0..$#src) {
+    foreach my $file (glob($src[$idx])) {
+        File::Copy::move($file, $dst[$idx]);
+        ++$total;
+    }
+}
 
 print("Moved $total file(s)\n");
