@@ -3,12 +3,12 @@
 use strict;
 use warnings;
 
-die("No arguements\n") unless (@ARGV);
+die "No arguements\n" unless @ARGV;
 
-unless (-f $ENV{HOME}."/.config/mpd/pid") {
-    system("mpd && mpc -q clear && mpc -q update &&
+unless (-f "$ENV{HOME}/.config/mpd/pid") {
+    system "mpd && mpc -q clear && mpc -q update &&
             mpc -q add / && mpc -q random on &&
-            mpc -q repeat on");
+            mpc -q repeat on";
 }
 
-system("mpc -q $ARGV[0]");
+system "mpc -q $ARGV[0]";
