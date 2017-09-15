@@ -19,7 +19,7 @@ $| = 1;
 
 for (@files) {
     $prev = $curr;
-    ($curr) = $_ =~ /$ARGV[0]\/(.*)/;
+    ($curr) = /$ARGV[0]\/(.*)/;
     
     $diff = length($prev) - length($curr);
     $diff = 0 if $diff < 0;

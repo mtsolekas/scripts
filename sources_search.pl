@@ -8,8 +8,8 @@ use File::Find;
 die "No arguements\n" unless @ARGV;
 
 my (@files, @match);
-find({ wanted => sub { push @files, $_ if $_ =~ /\.p[yl]$|\.[ch]$/ },
-       no_chdir => 1 }, ".");
+find({ wanted => sub { push @files, $_ if /\.p[yl]$|\.[ch]$/ }, no_chdir => 1 },
+     ".");
 
 for (@files) {
     open my $in, "<", $_ or next;
