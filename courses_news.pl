@@ -17,17 +17,17 @@ Notify->init;
 my $notification = Notify::Notification->new("Courses News");
 
 if ($response->is_success) {
-    my ($content) = $response->content =~ /Ενημέρωση(.*?)Επιλογές/s;
-    $content =~ s/\<.*?\>//g;
-    $content =~ s/^\s+|\s+$//g;
-    $content =~ s/\n\s*/\n/g;
+    my ($news) = $response->content =~ /Ενημέρωση(.*?)Επιλογές/s;
+    $news =~ s/\<.*?\>//g;
+    $news =~ s/^\s+|\s+$//g;
+    $news =~ s/\n\s*/\n/g;
 
-    my @tmp = split /\n/, $content;
+    my @tmp = split /\n/, $news;
     $tmp[2*$_+1] .= "\n" for 0..$#tmp/2;
-    $content = join "\n", @tmp;
+    $news = join "\n", @tmp;
 
-    $content = decode("UTF-8", $content);
-    $notification->update("Courses News", $content);
+    $news = decode("UTF-8", $news);
+    $notification->update("Courses News", $news);
 } else {
     $notification->update("Courses News", "Unable to fetch page");
 }
