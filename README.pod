@@ -51,8 +51,8 @@ it will perform several tasks with apt-get:
 
 =head2 Downloads Sort
 
-Downloads Sort will move the files from $HOME/Downloads/ matching
-the patterns found in $HOME/.config/downloads_sort.conf to their
+Downloads Sort will move the files from ~/Downloads/ matching
+the patterns found in ~/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
 glob pattern followed by the destination directory, for example:
 
@@ -64,8 +64,7 @@ glob pattern followed by the destination directory, for example:
 =head2 Music Control
 
 Music control will just execute the given mpc command if mpd is running.
-If it isn't running it will start it and initialize certain mpc options.
-For more information on mpc see B<man mpc>.
+If it isn't running it will start it and set random and repeat on.
 
 =head2 Opus Edit
 
