@@ -46,7 +46,7 @@ if ($#files < 0) {
 
 unless ("$ARGV[0]/" =~ /Music\//) {
     print "Moving files to music directory\n";
-    move($_, $ENV{HOME}."/Music/") foreach @files;
+    move($_, "$ENV{HOME}/Music/") foreach @files;
 } else {
     print "Files already in music directory\n";
 }
