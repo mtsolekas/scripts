@@ -23,7 +23,7 @@ foreach (@files) {
     
     $diff = length($prev) - length($curr);
     $diff = 0 if $diff < 0;
-    $padd = " "x$diff;
+    $padd = " " x $diff;
 
     print "\r[", ++$num, "/", $#files + 1, "] ",$curr, $padd;
 
@@ -41,7 +41,7 @@ $| = 0;
 if ($#files < 0) {
     die "No files selected\n";
 } else {
-    print "\nEdited ", $#files+1, " files\n";
+    print "\nEdited ", $#files + 1, " files\n";
 }
 
 unless ("$ARGV[0]/" =~ /Music\//) {
