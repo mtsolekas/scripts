@@ -5,8 +5,8 @@ use warnings;
 
 use File::Copy;
 
-my $config = "$ENV{HOME}./.config/downloads_sort.conf";
-open my $in, "<", $config  or die "Couldn't open $config\n";
+my $config = "$ENV{HOME}/.config/downloads_sort.conf";
+open my $in, "<", $config or die "Couldn't open $config\n";
 my @tmp = <$in>;
 close $in;
 
