@@ -23,7 +23,7 @@ if ($response->is_success) {
     $content =~ s/\n\s*/\n/g;
 
     my @tmp = split /\n/, $content;
-    $tmp[2*$_+1] .= "\n" foreach 0..$#tmp/2;
+    $tmp[2*$_+1] .= "\n" for 0..$#tmp/2;
     $content = join "\n", @tmp;
 
     $content = decode("UTF-8", $content);
