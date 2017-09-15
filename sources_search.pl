@@ -17,5 +17,5 @@ foreach (@files) {
     close $in;
 }
 
-print "Match found in ", $#match+1, " file(s)\n";
+print "Match found in ", $#match + 1, " file(s)\n";
 print "$_\n" foreach @match;
