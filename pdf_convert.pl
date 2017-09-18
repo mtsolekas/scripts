@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 die "LibreOffice not installed\n" unless -f "/usr/bin/libreoffice";
-die "No arguements\n" unless @ARGV;
+die "No arguments\n" unless @ARGV;
 
 my @ext = ("/*.ppt", "/*.pptx", "/*.doc", "/*.docx", "/*.odt", "/*.odp");
 my @files = map { glob $ARGV[0].$_ } @ext;
