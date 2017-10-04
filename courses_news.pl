@@ -3,18 +3,14 @@
 use strict;
 use warnings;
 
-use Encode;
 use LWP::UserAgent;
-use Glib::Object::Introspection;
+use Desktop::Notify;
 
 my $ua = LWP::UserAgent->new(timeout => 30, env_proxy => 1);
 my $response = $ua->get("http://courses.ece.tuc.gr");
 
-Glib::Object::Introspection->setup(basename => "Notify",
-                                   version => "0.7",
-                                   package => "Notify");
-Notify->init;
-my $notification = Notify::Notification->new("Courses News");
+my $notification = Desktop::Notify->new->create(summary => "Courses News",
+                                                timeout => -1);
 
 if ($response->is_success) {
     my ($news) = $response->content =~ /Ενημέρωση(.*?)Επιλογές/s;
@@ -23,13 +19,12 @@ if ($response->is_success) {
     $news =~ s/\n\s*/\n/g;
 
     my @tmp = split /\n/, $news;
-    $tmp[2*$_+1] .= "\n" for 0..$#tmp/2;
+    $tmp[2*$_+1] .= "\n" for 0..($#tmp / 2 - 1);
     $news = join "\n", @tmp;
 
-    $news = decode("UTF-8", $news);
-    $notification->update("Courses News", $news);
+    $notification->body($news);
 } else {
-    $notification->update("Courses News", "Unable to fetch page");
+    $notification->body("Unable to fetch page");
 }
 
 $notification->show;
