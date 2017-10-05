@@ -28,7 +28,7 @@ Scripts documentation.
 
 Courses News will fetch the news section from B<courses.ece.tuc.gr>
 and after formatting it, it will be displayed as a desktop
-notification via libnotify.
+notification.
 
 =head2 Debian Update
 
@@ -86,7 +86,7 @@ of LibreOffice, so that needs to be installed for the script to work.
 =head2 Sources Search
 
 Sources Search will search all files contents in the current directory
-and all subdirectories for matches to the given perl regualar expression
+and all subdirectories for matches to the given perl regular expression
 and list them. Currently it searches the contents of C source and header
 files as well as Python and Perl source files.
 
