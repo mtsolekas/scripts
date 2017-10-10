@@ -11,7 +11,7 @@ my @files = map { glob $ARGV[0].$_ } @ext;
 
 for (@files) {
     print "Converting $_ to PDF\n";
-    system "libreoffice --convert-to pdf $_ --outdir $ARGV[0]/ " .
+    system "libreoffice --convert-to pdf \"$_\" --outdir $ARGV[0]/ " .
            "--headless >/dev/null 2>&1";
 }
 
