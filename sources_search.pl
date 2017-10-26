@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use File::Find;
+use Term::ANSIColor;
 
 die "No arguments\n" unless @ARGV;
 
@@ -16,12 +17,14 @@ for my $f (@files) {
     my @contents = <$in>;
     close $in;
 
+    print color("bold");
     print "$f:\n" if join("\n", @contents) =~ /$ARGV[0]/;
+    print color("reset");
 
     my $line_num = 0;
     for my $line (@contents) {
         ++$line_num;
         $line =~ s/^\s*//;
-        print "    line $line_num: $line" if $line =~ /$ARGV[0]/;
+        print "\tline $line_num: $line" if $line =~ /$ARGV[0]/;
     }
 }
