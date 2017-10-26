@@ -19,7 +19,7 @@ if ($response->is_success) {
     $news =~ s/\n\s*/\n/g;
 
     my @tmp = split /\n/, $news;
-    $tmp[2*$_+1] .= "\n" for 0..($#tmp / 2 - 1);
+    $tmp[$_] .= "\n" for map { 2 * $_ + 1} 0..$#tmp / 2 - 1 ;
     $news = join "\n", @tmp;
 
     $notification->body($news);

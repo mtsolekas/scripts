@@ -11,12 +11,12 @@ my @tmp = <$in>;
 close $in;
 
 my (@src, @dst);
-for (0..$#tmp/2) {
-    $tmp[2*$_] =~ s/\n$//;
-    $tmp[2*$_+1] =~ s/\n$//;
+for (map { 2 * $_ } 0 .. $#tmp / 2) {
+    $tmp[$_] =~ s/\n$//;
+    $tmp[$_+1] =~ s/\n$//;
 
-    push @src, "$ENV{HOME}/Downloads/$tmp[2*$_]";
-    push @dst, "$ENV{HOME}/$tmp[2*$_+1]";
+    push @src, "$ENV{HOME}/Downloads/$tmp[$_]";
+    push @dst, "$ENV{HOME}/$tmp[$_+1]";
 }
 
 my $total = 0;
