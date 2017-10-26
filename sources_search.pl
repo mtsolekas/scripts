@@ -7,15 +7,21 @@ use File::Find;
 
 die "No arguments\n" unless @ARGV;
 
-my (@files, @match);
+my @files;
 find({ wanted => sub { push @files, $_ if /\.p[yl]$|\.[ch]$/ }, no_chdir => 1 },
      ".");
 
-for (@files) {
-    open my $in, "<", $_ or next;
-    push @match, $_ if join("\n", <$in>) =~ /$ARGV[0]/;
+for my $f (@files) {
+    open my $in, "<", $f or next;
+    my @contents = <$in>;
     close $in;
-}
 
-print "Match found in ", $#match + 1, " file(s)\n";
-print "$_\n" for @match;
+    print "$f:\n" if join("\n", @contents) =~ /$ARGV[0]/;
+
+    my $line_num = 0;
+    for my $line (@contents) {
+        ++$line_num;
+        $line =~ s/^\s*//;
+        print "    line $line_num: $line" if $line =~ /$ARGV[0]/;
+    }
+}
