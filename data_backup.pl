@@ -17,10 +17,11 @@ my $year = $time[5] + 1900;
 
 $backup_path .= "/$year-$month-$day";
 print "Backup destination: $backup_path\n";
+print "Number of file to backup: $#files\n";
 
 for (@files) {
-    print "Copying $_ ... ";
-    rcopy($_, "$backup_path/$_") or print "FAIL\n";
+    $| = 1; print "Copying $_ ... "; $| = 0;
+    rcopy($_, "$backup_path/$_") and print "Done\n" or print "FAIL\n";
 }
 
 print "Done\n";
