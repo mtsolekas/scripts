@@ -17,7 +17,9 @@ my $year = $time[5] + 1900;
 
 $backup_path .= "/$year-$month-$day";
 print "Backup destination: $backup_path\n";
-print "Number of file to backup: $#files\n";
+
+my $total = $#files + 1;
+print "Number of items to backup: $total\n";
 
 for (@files) {
     $| = 1; print "Copying $_ ... "; $| = 0;
