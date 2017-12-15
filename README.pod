@@ -40,6 +40,8 @@ as well as the backup destination, must be specified in the config file
 ~/.config/data_backup.conf. The first line of the config file must be the
 destination and each line after that a file/folder to backup, for example:
 
+=head3 B<~/.config/data_backup.conf>
+
     /media/joe/BackupDisk/
     /home/joe/Documents/
     /home/joe/.config/
@@ -70,6 +72,8 @@ Downloads Sort will move the files from ~/Downloads/ matching
 the patterns found in ~/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
 glob pattern followed by the destination directory, for example:
+
+=head3 B<~/.config/downloads_sort.conf>
 
     *.pdf
     Documents/
