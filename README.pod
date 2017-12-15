@@ -8,6 +8,8 @@ Scripts documentation.
 
 =item B<courses_news.pl>
 
+=item B<data_backup.pl>
+
 =item B<debian_update.pl> [-y]
 
 =item B<downloads_sort.pl>
@@ -29,6 +31,19 @@ Scripts documentation.
 Courses News will fetch the news section from B<courses.ece.tuc.gr>
 and after formatting it, it will be displayed as a desktop
 notification.
+
+=head2 Data Backup
+
+Data Backup will copy files and folders to the destination directory,
+inside a directory nameed current YEAR-MONTH-DAY. the files and folders
+as well as the backup destination must be specified in the config file
+~/.config/data_backup.conf. The first line of the config file must be the
+destination and each line after that a file/folder to backup, for example:
+
+    /media/joe/BackupDisk/
+    /home/joe/Documents/
+    /home/joe/.config/
+    /home/joe/.bashrc
 
 =head2 Debian Update
 
