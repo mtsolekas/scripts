@@ -6,7 +6,7 @@ use warnings;
 use File::Copy;
 use Audio::TagLib;
 
-die "No path specified" unless @ARGV;
+die "No path specified\n" unless @ARGV;
 my @files = glob "$ARGV[0]/*.opus";
 
 my $num = 0;
