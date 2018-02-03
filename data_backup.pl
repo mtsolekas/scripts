@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use File::Copy::Recursive qw(rcopy pathrm);
+use File::Copy::Recursive qw(rcopy);
 
 my $config_path = "$ENV{HOME}/.config/data_backup.conf";
 open my $in, "<", $config_path or die "Couldn't open $config_path\n";
