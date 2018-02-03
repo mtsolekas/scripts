@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use File::Copy::Recursive qw(rcopy);
+use File::Copy::Recursive;
 
 my $config_path = "$ENV{HOME}/.config/data_backup.conf";
 open my $in, "<", $config_path or die "Couldn't open $config_path\n";
@@ -23,7 +23,8 @@ print "Number of items to backup: $total\n";
 
 for (@files) {
     $| = 1; print "Copying $_ ... "; $| = 0;
-    rcopy($_, "$backup_path/$_") and print "Done\n" or print "FAIL\n";
+    File::Copy::Recursive::rcopy($_, "$backup_path/$_");
+    print "Done\n";
 }
 
 print "Done\n";
