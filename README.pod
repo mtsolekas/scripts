@@ -69,10 +69,14 @@ it will perform several tasks with apt-get:
 Downloads Sort will move the files from ~/Downloads/ matching
 the patterns found in ~/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
-glob pattern followed by the destination directory, for example:
-
+glob pattern followed by the destination directory (optionally comments
+can be used by starting a line with #), for example:
+    
+    # Comment 1
     *.pdf
     Documents/
+
+    # Comment 2
     *.opus
     Music/
 
