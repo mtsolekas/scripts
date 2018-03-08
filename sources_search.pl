@@ -9,7 +9,7 @@ use Term::ANSIColor;
 die "No arguments\n" unless @ARGV;
 
 my @files;
-find({ wanted => sub { push @files, $_ if /\.p[yl]$|\.[ch]$/ }, no_chdir => 1 },
+find({ wanted => sub { push @files, $_ if /\.pl$|\.[ch]$/ }, no_chdir => 1 },
      ".");
 
 for my $f (@files) {
