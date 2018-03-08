@@ -8,20 +8,17 @@ use File::Copy;
 my $config = "$ENV{HOME}/.config/downloads_sort.conf";
 open my $in, "<", $config or die "Couldn't open $config\n";
 
-my @tmp;
+my (@src, @dst);
 for (<$in>) {
     $_ =~ s/^\s+//;
-$_ =~ s/\s+$//;
-    push @tmp, $_ unless $_ =~ /^#|^$/;
+    $_ =~ s/\s+$//;
+    unless ($_ =~ /^#|^$/) {
+        push @src, "$ENV{HOME}/Downloads/$_" and next if $#src == $#dst;
+        push @dst, "$ENV{HOME}/$_" if $#src != $#dst;
+    }
 }
 
 close $in;
-
-my (@src, @dst);
-for (map { 2 * $_ } 0 .. $#tmp / 2) {
-    push @src, "$ENV{HOME}/Downloads/$tmp[$_]";
-    push @dst, "$ENV{HOME}/$tmp[$_+1]";
-}
 
 my $total = 0;
 for my $idx (0..$#src) {
