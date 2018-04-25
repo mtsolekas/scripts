@@ -57,11 +57,11 @@ unless ("$ARGV[0]/" =~ /Music\//) {
     print "Files already in music directory\n";
 }
 
-if (-f "$ENV{HOME}/.config/mpd/pid") {
+if ($#files + 1 != $skip and -f "$ENV{HOME}/.config/mpd/pid") {
     print "Refreshing MPD\n";
     system "mpc -q clear && mpc -q update &&
             mpc -q add / && mpc -q random on &&
             mpc -q repeat on";
 } else {
-    print "MPD not running\n";
+    print "Refreshing MPD not required\n";
 }
