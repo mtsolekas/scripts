@@ -34,11 +34,12 @@ notification.
 
 =head2 Data Backup
 
-Data Backup will copy files and folders to a directory named current
-YEAR-MONTH-DAY, inside the destination directory. The files and folders,
-as well as the backup destination, must be specified in the config file
-~/.config/data_backup.conf. The first line of the config file must be the
-destination and each line after that a file/folder to backup, for example:
+Data Backup will compress and copy files and folders to a directory
+named current YEAR-MONTH-DAY, inside the destination directory.
+The files and folders, as well as the backup destination, must be
+specified in the config file ~/.config/data_backup.conf. The first
+line of the config file must be the destination and each line
+after that a file/folder to backup, for example:
 
     /media/joe/BackupDisk/
     /home/joe/Documents/
