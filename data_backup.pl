@@ -49,7 +49,7 @@ if (@orphans) {
 
 if (@root_files) {
     $| = 1; print "Backing up root files to root_files.tgz ... "; $| = 0;
-    system "tar czvf $backup_path/root_files.tgz -C / @root_files";
+    system "tar czf $backup_path/root_files.tgz -C / @root_files";
     print "Done\n";
 }
 
