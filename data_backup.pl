@@ -42,13 +42,13 @@ for (@files) {
 }
 
 if (@orphans) {
-    $| = 1; print "Backing up orphan files to orphans.tgz ... "; $| = 0;
+    print "Backing up orphan files to orphans.tgz ... ";
     system "tar czf $backup_path/orphans.tgz -C $ENV{HOME} @orphans";
     print "Done\n";
 }
 
 if (@root_files) {
-    $| = 1; print "Backing up root files to root_files.tgz ... "; $| = 0;
+    print "Backing up root files to root_files.tgz ... ";
     system "tar czf $backup_path/root_files.tgz -C / @root_files";
     print "Done\n";
 }
