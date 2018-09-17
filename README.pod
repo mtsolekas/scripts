@@ -110,17 +110,17 @@ of LibreOffice, so that needs to be installed for the script to work.
 Repository Watch will compare the latest commits from 2 github repositories
 at a time, determine wether a new commit is available and inform the user
 within a desktop notification. The list of repositories is sourced from
-~/.config/repository_watch.conf
+~/.config/repository_watch.conf. The config file has the following syntax:
+
+    upstream_username1 upstream_reponame1 origin_username1 origin_reponame1
+    upstream_username2 upstream_reponame2 origin_username2 origin_reponame2
 
 =head2 Sources Search
 
 Sources Search will search all files contents in the current directory
 and all subdirectories for matches to the given perl regular expression
 and list them. Currently it searches the contents of C source and header
-files as well as Perl source files. The config file has the following syntax:
-
-    upstream_username1 upstream_reponame1 origin_username1 origin_reponame1
-    upstream_username2 upstream_reponame2 origin_username2 origin_reponame2
+files as well as Perl source files.
 
 =head1 COPYRIGHT AND LICENSE
 
