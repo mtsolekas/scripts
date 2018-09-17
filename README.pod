@@ -72,7 +72,7 @@ the patterns found in ~/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
 glob pattern followed by the destination directory (optionally comments
 can be used by starting a line with #), for example:
-    
+
     # Comment 1
     *.pdf
     Documents/
@@ -103,12 +103,22 @@ PDF Convert will convert all doc, docx, odt, ppt, pptx, odp files
 in the given directory to PDF. It uses the export to PDF function
 of LibreOffice, so that needs to be installed for the script to work.
 
+=head2 Repository Watch
+
+Repository Watch will compare the latest commits from 2 github repositories
+at a time, determine wether a new commit is available and inform the user
+within a desktop notification. The list of repositories is sourced from
+~/.config/repository_watch.conf
+
 =head2 Sources Search
 
 Sources Search will search all files contents in the current directory
 and all subdirectories for matches to the given perl regular expression
 and list them. Currently it searches the contents of C source and header
-files as well as Perl source files.
+files as well as Perl source files. The config file has the following syntax:
+
+    upstream_username1 upstream_reponame1 origin_username1 origin_reponame1
+    upstream_username2 upstream_reponame2 origin_username2 origin_reponame2
 
 =head1 COPYRIGHT AND LICENSE
 
