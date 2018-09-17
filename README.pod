@@ -20,6 +20,8 @@ Scripts documentation.
 
 =item B<pdf_convert.pl> <path/to/directory/>
 
+=item B<repository_watch.pl>
+
 =item B<sources_search.pl> <regular_expression>
 
 =back
