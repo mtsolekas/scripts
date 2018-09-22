@@ -24,7 +24,8 @@ sub get_dates {
     return @dates;
 }
 
-open my $in, "<", "$ENV{HOME}/.config/repository_watch.conf" or die;
+my $config = "$ENV{HOME}/.config/repository_watch.conf";
+open my $in, "<", $config or die "Couldn't open $config\n";
 my @repopairs = <$in>;
 close $in;
 
@@ -32,8 +33,9 @@ my $ua = LWP::UserAgent->new(timeout => 30, env_proxy => 1);
 my $notification = Desktop::Notify->new->create(summary => "Repository Watch",
                                                 timeout => -1);
 my $msg;
-for (@repopairs) {
-    my ($uuser, $urepo, $ouser, $orepo) = split / /, $_; $orepo =~ s/\n//;
+while (each @repopairs) {
+    my ($uuser, $urepo, $ouser, $orepo) = split / /, $repopairs[$_];
+    $orepo =~ s/\n//;
 
     my @udates = get_dates($uuser, $urepo, $ua, $notification);
     my @odates = get_dates($ouser, $orepo, $ua, $notification);
@@ -42,7 +44,8 @@ for (@repopairs) {
                 $udates[0] - $odates[0],
                 $udates[1] - $odates[1]);
 
-    $msg .= "\n$orepo: ";
+    $msg .= "\n" if $_;
+    $msg .= "$orepo: ";
     if ($diff[0] > 0
         || ($diff[0] == 0 && $diff[1] > 0)
         || ($diff[0] == 0 && $diff[1] == 0 && $diff[2] > 0)) {
