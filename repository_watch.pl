@@ -9,19 +9,24 @@ use Desktop::Notify;
 sub get_dates {
     my ($user, $repo, $ua, $notification) = @_;
 
-    my $resp = $ua->get("https://github.com/$user/$repo/commits/master");
+    my $url = "https://api.github.com/repos/$user/$repo/git/refs/heads/master";
+    my $resp = $ua->get("$url/refs/heads/master");
     unless ($resp->is_success) {
         $notification->body("Unable to fetch page");
         $notification->show;
         exit;
     }
 
-    my %months = (Jan => 1, Feb => 2, Mar => 3, Apr => 4,
-                  May => 5, Jun => 6, Jul => 7, Aug => 8,
-                  Sep => 9, Oct => 10, Nov => 11, Dec => 12);
-    my ($date) = $resp->content =~ /Commits on (.*)/; $date =~ s/,//;
-    my @dates = split / /, $date; $dates[0] = $months{$dates[0]};
-    return @dates;
+    ($url) = $resp->content =~ /"url".*"url"[^"]*"([^"]*)"/;
+    $resp = $ua->get($url);
+    unless ($resp->is_success) {
+        $notification->body("Unable to fetch page");
+        $notification->show;
+        exit;
+    }
+
+    my ($date) = $resp->content =~ /"date".*"date"[^"]*"([^T]*)/;
+    return split /-/, $date;
 }
 
 my $config = "$ENV{HOME}/.config/repository_watch.conf";
@@ -40,9 +45,9 @@ while (each @repos) {
     my @up_dates = get_dates($up_user, $up_repo, $ua, $notification);
     my @or_dates = get_dates($or_user, $or_repo, $ua, $notification);
 
-    my @diff = ($up_dates[2] - $or_dates[2],
-                $up_dates[0] - $or_dates[0],
-                $up_dates[1] - $or_dates[1]);
+    my @diff = ($up_dates[0] - $or_dates[0],
+                $up_dates[1] - $or_dates[1],
+                $up_dates[2] - $or_dates[2]);
 
     $msg .= "\n" if $_;
     $msg .= "$or_repo: ";
