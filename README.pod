@@ -10,7 +10,7 @@ Scripts documentation.
 
 =item B<data_backup.pl>
 
-=item B<data_crypt.pl> -e|-d [output] input
+=item B<data_crypt.pl> {-d|-e output} input
 
 =item B<debian_update.pl> [-y]
 
@@ -54,7 +54,7 @@ after that a file/folder to backup, for example:
 
 Data Crypt is a simple wrapper script around GnuPG, in order to let
 the user symmetrically encrypt/decrypt dicrectories. Note that on
-successful encryption/decryption the input directory/file input is deleted.
+successful encryption/decryption the input directory/file is deleted.
 
 =head2 Debian Update
 
