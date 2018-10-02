@@ -10,7 +10,7 @@ Scripts documentation.
 
 =item B<data_backup.pl>
 
-=item B<data_crypt.pl> {-d|-e output} input
+=item B<data_crypt.pl> <-d|-e output> input
 
 =item B<debian_update.pl> [-y]
 
