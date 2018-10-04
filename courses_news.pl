@@ -14,13 +14,18 @@ my $notification = Desktop::Notify->new->create(summary => "Courses News",
 
 if ($response->is_success) {
     my ($news) = $response->content =~ /Ενημέρωση(.*?)Επιλογές/s;
-    $news =~ s/\<.*?\>//g;
-    $news =~ s/^\s+|\s+$//g;
-    $news =~ s/\n\s*/\n/g;
 
-    my @tmp = split /\n/, $news;
-    $tmp[$_] .= "\n" for map { 2 * $_ + 1} 0..$#tmp / 2 - 1 ;
-    $news = join "\n", @tmp;
+    if ($news) {
+        $news =~ s/\<.*?\>//g;
+        $news =~ s/^\s+|\s+$//g;
+        $news =~ s/\n\s*/\n/g;
+
+        my @tmp = split /\n/, $news;
+        $tmp[$_] .= "\n" for map { 2 * $_ + 1} 0..$#tmp / 2 - 1 ;
+        $news = join "\n", @tmp;
+    } else {
+        $news = "Service unavailable";
+    }
 
     $notification->body($news);
 } else {
