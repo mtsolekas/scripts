@@ -16,13 +16,10 @@ if ($response->is_success) {
     my ($news) = $response->content =~ /Ενημέρωση(.*?)Επιλογές/s;
 
     if ($news) {
-        $news =~ s/\<.*?\>//g;
+        $news =~ s/<[^>]*>//g;
         $news =~ s/^\s+|\s+$//g;
         $news =~ s/\n\s*/\n/g;
-
-        my @tmp = split /\n/, $news;
-        $tmp[$_] .= "\n" for map { 2 * $_ + 1} 0..$#tmp / 2 - 1 ;
-        $news = join "\n", @tmp;
+        $news =~ s/(\n[0-9])/\n$1/g;
     } else {
         $news = "Service unavailable";
     }
