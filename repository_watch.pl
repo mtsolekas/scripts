@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use threads;
 
+use Time::Local;
 use LWP::UserAgent;
 use Desktop::Notify;
 
@@ -21,7 +22,9 @@ sub get_dates {
     return unless ($resp->is_success);
 
     my ($date) = $resp->content =~ /"date".*"date"[^"]*"([^T]*)/;
-    return split /-/, $date;
+    my ($year, $month, $day) = split /-/, $date;
+    $date = timegm(1, 1, 1, $day, $month - 1, $year);
+    return $date;
 }
 
 my $config = "$ENV{HOME}/.config/repository_watch.conf";
@@ -38,31 +41,21 @@ while (each @repos) {
     next if $repos[$_] =~ /^$/;
 
     my ($repo, $up_user, $or_user) = split / /, $repos[$_];
-    $or_user =~ s/\n//;
-
-    my $up_thr = threads->create({ "context" => "list" }, "get_dates",
+    my $up_thr = threads->create({ "context" => "scalar" }, "get_dates",
                                  $up_user, $repo);
-    my $or_thr = threads->create({ "context" => "list" }, "get_dates",
+    my $or_thr = threads->create({ "context" => "scalar" }, "get_dates",
                                  $or_user, $repo);
 
-    $msg .= "\n" if $_;
+    $msg .= "\n" if $msg;
     $msg .= "$repo: ";
 
-    my @up_dates = $up_thr->join();
-    my @or_dates = $or_thr->join();
+    my $up_date = $up_thr->join();
+    my $or_date = $or_thr->join();
 
-    unless (@up_dates && @or_dates) {
+    unless ($up_date && $or_date) {
         $msg .= "Unable to fetch commits";
         next;
-    }
-
-    my @diff = ($up_dates[0] - $or_dates[0],
-                $up_dates[1] - $or_dates[1],
-                $up_dates[2] - $or_dates[2]);
-
-    if ($diff[0] > 0
-        || ($diff[0] == 0 && $diff[1] > 0)
-        || ($diff[0] == 0 && $diff[1] == 0 && $diff[2] > 0)) {
+    } elsif ($up_date > $or_date) {
         $msg .= "New commits available";
     } else {
         $msg .= "No new commits";
