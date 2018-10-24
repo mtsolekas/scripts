@@ -33,14 +33,12 @@ my @repos = <$in>;
 close $in;
 
 my $msg;
-while (each @repos) {
-    next if $repos[$_] =~ /^#/;
-    $repos[$_] =~ s/#.*//g;
-    $repos[$_] =~ s/^\s+|\s+$//g;
-    $repos[$_] =~ s/\s+/ /g;
-    next if $repos[$_] =~ /^$/;
+for (@repos) {
+    next if /^\s*$|^\s*#/;
+    $_ =~ s/^\s+|\s*#.*\s//g;
+    $_ =~ s/\s+/ /g;
 
-    my ($repo, $up_user, $or_user) = split / /, $repos[$_];
+    my ($repo, $up_user, $or_user) = split / /, $_;
     my $up_thr = threads->create({ "context" => "scalar" }, "get_dates",
                                  $up_user, $repo);
     my $or_thr = threads->create({ "context" => "scalar" }, "get_dates",
