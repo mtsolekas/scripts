@@ -120,8 +120,9 @@ at a time, determine wether a new commit is available and inform the user
 within a desktop notification. The list of repositories is sourced from
 ~/.config/repository_watch.conf. The config file has the following syntax:
 
-    upstream_username1 upstream_reponame1 origin_username1 origin_reponame1
-    upstream_username2 upstream_reponame2 origin_username2 origin_reponame2
+    # Comment
+    repository_name1 upstream_username1 origin_username1
+    repository_name2 upstream_username2 origin_username2
 
 =head2 Sources Search
 

@@ -31,16 +31,22 @@ close $in;
 
 my $msg;
 while (each @repos) {
-    my ($up_user, $up_repo, $or_user, $or_repo) = split / /, $repos[$_];
-    $or_repo =~ s/\n//;
+    next if $repos[$_] =~ /^#/;
+    $repos[$_] =~ s/#.*//g;
+    $repos[$_] =~ s/^\s+|\s+$//g;
+    $repos[$_] =~ s/\s+/ /g;
+    next if $repos[$_] =~ /^$/;
+
+    my ($repo, $up_user, $or_user) = split / /, $repos[$_];
+    $or_user =~ s/\n//;
 
     my $up_thr = threads->create({ "context" => "list" }, "get_dates",
-                                 $up_user, $up_repo);
+                                 $up_user, $repo);
     my $or_thr = threads->create({ "context" => "list" }, "get_dates",
-                                 $or_user, $or_repo);
+                                 $or_user, $repo);
 
     $msg .= "\n" if $_;
-    $msg .= "$or_repo: ";
+    $msg .= "$repo: ";
 
     my @up_dates = $up_thr->join();
     my @or_dates = $or_thr->join();
