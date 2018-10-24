@@ -10,12 +10,10 @@ open my $in, "<", $config or die "Couldn't open $config\n";
 
 my (@src, @dst);
 for (<$in>) {
-    $_ =~ s/^\s+//;
-    $_ =~ s/\s+$//;
-    unless ($_ =~ /^#|^$/) {
-        push @src, "$ENV{HOME}/Downloads/$_" and next if $#src == $#dst;
-        push @dst, "$ENV{HOME}/$_" if $#src != $#dst;
-    }
+    $_ =~ s/^\s+|\s+$//g;
+    next if /^#|^$/;
+    push @src, "$ENV{HOME}/Downloads/$_" and next if $#src == $#dst;
+    push @dst, "$ENV{HOME}/$_" if $#src != $#dst;
 }
 
 close $in;

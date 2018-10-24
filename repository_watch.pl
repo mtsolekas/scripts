@@ -29,13 +29,11 @@ sub get_dates {
 
 my $config = "$ENV{HOME}/.config/repository_watch.conf";
 open my $in, "<", $config or die "Couldn't open $config\n";
-my @repos = <$in>;
-close $in;
 
 my $msg;
-for (@repos) {
-    next if /^\s*$|^\s*#/;
-    $_ =~ s/^\s+|\s*#.*\s//g;
+for (<$in>) {
+    $_ =~ s/^\s+|\s+$//g;
+    next if /^#|^$/;
     $_ =~ s/\s+/ /g;
 
     my ($repo, $up_user, $or_user) = split / /, $_;
@@ -59,6 +57,8 @@ for (@repos) {
         $msg .= "No new commits";
     }
 }
+
+close $in;
 
 
 my $notification = Desktop::Notify->new->create(summary => "Repository Watch",
