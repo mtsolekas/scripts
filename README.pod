@@ -45,8 +45,13 @@ specified in the config file ~/.config/data_backup.conf. The first
 line of the config file must be the destination and each line
 after that a file/folder to backup, for example:
 
+    # Comment
+    # Backup destination
     /media/joe/BackupDisk/
+
+    # A directory
     /home/joe/Documents/
+    # Some files
     /home/joe/.config/
     /home/joe/.bashrc
 
@@ -122,6 +127,7 @@ within a desktop notification. The list of repositories is sourced from
 
     # Comment
     repository_name1 upstream_username1 origin_username1
+
     repository_name2 upstream_username2 origin_username2
 
 =head2 Sources Search

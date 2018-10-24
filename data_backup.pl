@@ -3,36 +3,38 @@
 use strict;
 use warnings;
 
-use File::Path qw(make_path);
+use File::Path;
 
 my $config_path = "$ENV{HOME}/.config/data_backup.conf";
 open my $in, "<", $config_path or die "Couldn't open $config_path\n";
-my $backup_path = <$in>; chomp $backup_path;
-my @files = <$in>; chomp @files;
+
+my ($backup_path, @files, @orphans, @root_files);
+for (<$in>) {
+    $_ =~ s/^\s+|\s+$//g;
+    next if /^#|^$/;
+
+    s/\/+$//g and $backup_path = $_ and next unless $backup_path;
+    s/^\///g and push @root_files, $_ and next unless /$ENV{HOME}/;
+    s/$ENV{HOME}\/?//g and push @orphans, $_ and next unless -d $_;
+    push @files, $_;
+}
+
 close $in;
 
 die "Backup path not found\n" unless -d $backup_path;
 
 my @time = localtime;
-my $day = $time[3];
-my $month = $time[4] + 1;
-my $year = $time[5] + 1900;
+my ($year, $month, $day) = ($time[5] + 1900, $time[4] + 1, $time[3]);
 
 $backup_path .= "/$year-$month-$day";
-make_path($backup_path);
+File::Path::make_path($backup_path);
 print "Backup destination: $backup_path\n";
 
 my $total = $#files + 1;
 print "Number of items to backup: $total\n";
 
-my (@orphans, @root_files);
-my $name;
-
 for (@files) {
-    s/^\///g and push @root_files, $_ and next unless /$ENV{HOME}/;
-    s/$ENV{HOME}\/?//g and push @orphans, $_ and next unless -d $_;
-
-    $name = $_;
+    my $name = $_;
     $name =~ s/\/$//g;
     $name =~ s/.*\///g;
 
@@ -43,7 +45,7 @@ for (@files) {
 
 if (@orphans) {
     print "Backing up orphan files to orphans.tgz ... ";
-    system "tar czf $backup_path/orphans.tgz -C $ENV{HOME} @orphans";
+    system "tar czf $backup_path/orphans.tgz -C $ENV{HOME}/ @orphans";
     print "Done\n";
 }
 

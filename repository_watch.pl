@@ -30,12 +30,17 @@ sub get_dates {
 my $config = "$ENV{HOME}/.config/repository_watch.conf";
 open my $in, "<", $config or die "Couldn't open $config\n";
 
-my $msg;
+my @repos;
 for (<$in>) {
     $_ =~ s/^\s+|\s+$//g;
     next if /^#|^$/;
-    $_ =~ s/\s+/ /g;
+    $_ =~ s/\s+/ /g and push @repos, $_;
+}
 
+close $in;
+
+my $msg;
+for (@repos) {
     my ($repo, $up_user, $or_user) = split / /, $_;
     my $up_thr = threads->create({ "context" => "scalar" }, "get_dates",
                                  $up_user, $repo);
@@ -57,9 +62,6 @@ for (<$in>) {
         $msg .= "No new commits";
     }
 }
-
-close $in;
-
 
 my $notification = Desktop::Notify->new->create(summary => "Repository Watch",
                                                 timeout => -1);
