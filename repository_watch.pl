@@ -47,19 +47,16 @@ for (@repos) {
     my $or_thr = threads->create({ "context" => "scalar" }, "get_dates",
                                  $or_user, $repo);
 
-    $msg .= "\n" if $msg;
-    $msg .= "$repo: ";
-
     my $up_date = $up_thr->join();
     my $or_date = $or_thr->join();
 
+    $msg .= "\n" if $msg;
     unless ($up_date && $or_date) {
-        $msg .= "Unable to fetch commits";
-        next;
+        $msg .= "$repo: Unable to fetch commits";
     } elsif ($up_date > $or_date) {
-        $msg .= "New commits available";
+        $msg .= "$repo: New commits available";
     } else {
-        $msg .= "No new commits";
+        $msg .= "repo: No new commits";
     }
 }
 
