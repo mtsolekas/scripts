@@ -30,7 +30,7 @@ $backup_path .= "/$year-$month-$day";
 File::Path::make_path($backup_path);
 print "Backup destination: $backup_path\n";
 
-my $total = $#files + 1;
+my $total = $#root_files + $#orphans + $#files + 3;
 print "Number of items to backup: $total\n";
 
 for (@files) {
