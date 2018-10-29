@@ -56,7 +56,7 @@ for (@repos) {
     } elsif ($up_date > $or_date) {
         $msg .= "$repo: New commits available";
     } else {
-        $msg .= "repo: No new commits";
+        $msg .= "$repo: No new commits";
     }
 }
 
