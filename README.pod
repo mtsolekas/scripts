@@ -82,6 +82,8 @@ it will perform several tasks with apt-get:
 
 =head2 Downloads Sort
 
+B<See https://github.com/mtsolekas/dsort for a better version>
+
 Downloads Sort will move the files from ~/Downloads/ matching
 the patterns found in ~/.config/downloads_sort.conf to their
 corresponding destinations. The downloads_sort.conf syntax is a
