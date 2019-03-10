@@ -105,6 +105,8 @@ If it isn't running it will start it and set random and repeat on.
 
 =head2 Opus Edit
 
+B<See https://github.com/mtsolekas/tagit for a different version>
+
 Opus Edit will edit the ARTIST and TITLE tags of all opus files
 in the given directory by getting the required information from
 the files name. The opus file must be named in the format of
