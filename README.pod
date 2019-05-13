@@ -32,6 +32,7 @@ Scripts documentation.
 
 =head2 Courses News
 
+Requires notify-send.
 Courses News will fetch the news section from B<courses.ece.tuc.gr>
 and after formatting it, it will be displayed as a desktop
 notification.
@@ -124,6 +125,7 @@ of LibreOffice, so that needs to be installed for the script to work.
 
 =head2 Repository Watch
 
+Requires notify-send.
 Repository Watch will compare the latest commits from 2 github repositories
 at a time, determine wether a new commit is available and inform the user
 within a desktop notification. The list of repositories is sourced from

@@ -4,13 +4,9 @@ use strict;
 use warnings;
 
 use LWP::UserAgent;
-use Desktop::Notify;
 
 my $ua = LWP::UserAgent->new(timeout => 30, env_proxy => 1);
 my $response = $ua->get("http://courses.ece.tuc.gr");
-
-my $notification = Desktop::Notify->new->create(summary => "Courses News",
-                                                timeout => -1);
 
 if ($response->is_success) {
     my ($news) = $response->content =~ /Ενημέρωση(.*?)Επιλογές/s;
@@ -24,9 +20,7 @@ if ($response->is_success) {
         $news = "Service unavailable";
     }
 
-    $notification->body($news);
+    system "notify-send", "Courses News", "$news";
 } else {
-    $notification->body("Unable to fetch page");
+    system "notify-send", "Courses News", "Unable to fetch page";
 }
-
-$notification->show;
