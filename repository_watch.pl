@@ -6,6 +6,7 @@ use threads;
 
 use Time::Local;
 use LWP::UserAgent;
+use Desktop::Notify;
 
 sub get_dates {
     my ($user, $repo) = @_;
@@ -59,4 +60,7 @@ for (@repos) {
     }
 }
 
-system "notify-send", "Repository Watch", "$msg"
+my $notification = Desktop::Notify->new->create(summary => "Repository Watch",
+                                                timeout => -1);
+$notification->body($msg);
+$notification->show;
